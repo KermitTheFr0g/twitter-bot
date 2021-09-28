@@ -27,4 +27,3 @@ stream.on('tweet', async function(tweet) {
     }
 
 })
-
