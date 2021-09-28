@@ -11,19 +11,46 @@ function reverseString(text){
     return joined
 }
 
+async function searchUser(){
+    const {data} = await client.get('users/search', {q: 'KermitTheJuicer'})
+    console.log(data[0].id_str)
+} 
 
-// defines the stream watching for a status from specific user
-let stream = client.stream('statuses/filter', { follow: '{USER ID OF THE ACCOUNT TO WATCH}'})
-
-// when a tweet is received this function is run
-stream.on('tweet', async function(tweet) {
-
-    // checks to see if the tweet is a reply
-    if(tweet.in_reply_to_status_id == null){
-        let reversedText = reverseString(tweet.text)
-
-        const {data} = await client.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: '@' + tweet.user.screen_name + ' ' + reversedText})
-        console.log('Replied with - ' + reversedText)
+function methify(text){
+    let methed = text.split(' ')
+    methed[Math.floor(Math.random() * methed.length)] = 'meth';
+    if(methed.length > 10){
+        methed[Math.floor(Math.random() * methed.length)] = 'meth';
+    } else if(methed.length > 20){
+        methed[Math.floor(Math.random() * methed.length)] = 'meth';
+        methed[Math.floor(Math.random() * methed.length)] = 'meth';
+        methed[Math.floor(Math.random() * methed.length)] = 'meth';
     }
 
-})
+    methed = methed.join(' ')
+    return methed
+}
+
+function streamtweets(){
+    
+    // defines the stream watching for a status from specific user
+    let stream = client.stream('statuses/filter', { follow: ['761207918930890756', '1090372176606347265', '902213991321272321', '1422505784387178528', '859024346991525888', '978358237065105409', '781525632308109313', '804060769021284353', '854375807258677248', '996838341852229634'].join(',') })
+
+    // when a tweet is received this function is run
+    stream.on('tweet', async function(tweet) {
+
+        // checks to see if the tweet is a reply
+        if(tweet.in_reply_to_status_id == null && tweet.retweeted == false){
+            //let reversedText = reverseString(tweet.text)
+
+            //const {data} = await client.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: '@' + tweet.user.screen_name + ' ' + reversedText})
+            //console.log('Replied with - ' + reversedText)
+
+            let methtext = methify(tweet.text)
+            const {data} = await client.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: '@' + tweet.user.screen_name + ' ' + methtext})
+            console.log('Replied to ' + tweet.user.screen_name +  ' with - ' + methtext)
+        }
+
+    })
+}
+streamtweets()
