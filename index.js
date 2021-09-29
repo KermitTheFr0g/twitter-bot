@@ -53,17 +53,17 @@ function methify(text){
     methed[Math.floor(Math.random() * methed.length)] = 'meth';
     if(methed.length > 10){
         let randomIndex = Math.floor(Math.random() * methed.length)
-        methed[randomIndex] = chooseMethWord(methed[randomIndex]);
+        methed[randomIndex] = 'meth';
 
     } else if(methed.length > 20){
         let randomIndex = Math.floor(Math.random() * methed.length)
-        methed[randomIndex] = chooseMethWord(methed[randomIndex]);
+        methed[randomIndex] = 'meth';
 
         randomIndex = Math.floor(Math.random() * methed.length)
-        methed[methed[randomIndex]] = chooseMethWord(methed[randomIndex]);
+        methed[methed[randomIndex]] = 'meth';
 
         randomIndex = Math.floor(Math.random() * methed.length)
-        methed[methed[randomIndex]] = chooseMethWord(methed[randomIndex]);
+        methed[methed[randomIndex]] = 'meth';
     }
 
     methed = methed.join(' ')
