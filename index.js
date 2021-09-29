@@ -11,6 +11,38 @@ function reverseString(text){
     return joined
 }
 
+function chooseMethWord(currentWord){
+    // check if capitalised
+    if(currentWord == currentWord.toUpperCase()){
+        let capital = true
+    }
+
+    // check ending
+
+    // ed
+    let ending = currentWord.subString(currentWord.length - 2);
+    if(ending.toLowerCase() == 'ed'){
+        if(capital){
+            return 'METHED'
+        } else {
+            return 'methed'
+        }
+    }
+
+    // ing
+    ending = currentWord.subString(currentWord.length - 3);
+    if(ending.toLowerCase() == 'ing'){
+        if(capital){
+            return 'SMOKING METH'
+        } else {
+            return 'smoking meth'
+        }
+    }
+    // TODO add any more endings
+
+}
+
+
 async function searchUser(){
     const {data} = await client.get('users/search', {q: 'KermitTheJuicer'})
     console.log(data[0].id_str)
@@ -20,11 +52,18 @@ function methify(text){
     let methed = text.split(' ')
     methed[Math.floor(Math.random() * methed.length)] = 'meth';
     if(methed.length > 10){
-        methed[Math.floor(Math.random() * methed.length)] = 'meth';
+        let randomIndex = Math.floor(Math.random() * methed.length)
+        methed[randomIndex] = chooseMethWord(methed[randomIndex]);
+
     } else if(methed.length > 20){
-        methed[Math.floor(Math.random() * methed.length)] = 'meth';
-        methed[Math.floor(Math.random() * methed.length)] = 'meth';
-        methed[Math.floor(Math.random() * methed.length)] = 'meth';
+        let randomIndex = Math.floor(Math.random() * methed.length)
+        methed[randomIndex] = chooseMethWord(methed[randomIndex]);
+
+        randomIndex = Math.floor(Math.random() * methed.length)
+        methed[methed[randomIndex]] = chooseMethWord(methed[randomIndex]);
+
+        randomIndex = Math.floor(Math.random() * methed.length)
+        methed[methed[randomIndex]] = chooseMethWord(methed[randomIndex]);
     }
 
     methed = methed.join(' ')
