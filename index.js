@@ -95,8 +95,17 @@ function streamtweets(){
     })
 
 
-    // when user is @ 
-}
-//streamtweets()
+    // when user is @ they will reply
 
-searchUser()
+    let userStream = client.stream('statuses/filter', { track: '@bigmethshlurper' });
+
+    userStream.on('tweet', async function(tweet){
+        
+        let responses = ['ah yes, however meth is my favourite', 'no sir, would you care to smoke meth with me?']
+        let randomIndex = Math.floor(Math.random() * responses.length)
+        const {data} = await client.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: '@' + tweet.user.screen_name + ' ' + responses[randomIndex]})
+        console.log('Replied to ' + tweet.user.screen_name +  ' with - ' + responses[responses[randomIndex]])
+    })
+
+}
+streamtweets()
