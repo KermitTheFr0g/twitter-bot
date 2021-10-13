@@ -44,7 +44,8 @@ function chooseMethWord(currentWord){
 
 
 async function searchUser(){
-    const {data} = await client.get('users/search', {q: 'KermitTheJuicer'})
+    let search = process.argv[2] || 'KermitTheJuicer'
+    const {data} = await client.get('users/search', {q: search })
     console.log(data[0].id_str)
 } 
 
@@ -73,12 +74,13 @@ function methify(text){
 function streamtweets(){
     
     // defines the stream watching for a status from specific user
-    let stream = client.stream('statuses/filter', { follow: ['761207918930890756', '1090372176606347265', '902213991321272321', '1422505784387178528', '859024346991525888', '978358237065105409', '781525632308109313', '804060769021284353', '854375807258677248', '996838341852229634'].join(',') })
+    let stream = client.stream('statuses/filter', { follow: ['761207918930890756', '1090372176606347265', '902213991321272321', '1422505784387178528', '859024346991525888', '978358237065105409', '781525632308109313', '804060769021284353', '854375807258677248', '996838341852229634', '866915118243880961', '3817524449', '792639512027553794'].join(',') })
 
     // when a tweet is received this function is run
     stream.on('tweet', async function(tweet) {
 
         // checks to see if the tweet is a reply
+        console.log(tweet)
         if(tweet.in_reply_to_status_id == null && tweet.retweeted == false){
             //let reversedText = reverseString(tweet.text)
 
@@ -91,5 +93,10 @@ function streamtweets(){
         }
 
     })
+
+
+    // when user is @ 
 }
-streamtweets()
+//streamtweets()
+
+searchUser()
