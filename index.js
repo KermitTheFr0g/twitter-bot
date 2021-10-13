@@ -80,7 +80,6 @@ function streamtweets(){
     stream.on('tweet', async function(tweet) {
 
         // checks to see if the tweet is a reply
-        console.log(tweet)
         if(tweet.in_reply_to_status_id == null && tweet.retweeted == false){
             //let reversedText = reverseString(tweet.text)
 
