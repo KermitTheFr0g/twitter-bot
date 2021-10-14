@@ -43,11 +43,7 @@ function chooseMethWord(currentWord){
 }
 
 
-async function searchUser(){
-    let search = process.argv[2] || 'KermitTheJuicer'
-    const {data} = await client.get('users/search', {q: search })
-    console.log(data[0].id_str)
-} 
+
 
 function methify(text){
     let methed = text.split(' ')
@@ -103,7 +99,7 @@ function streamtweets(){
         let responses = ['ah yes, however meth is my favourite', 'no sir, would you care to smoke meth with me?']
         let randomIndex = Math.floor(Math.random() * responses.length)
         const {data} = await client.post('statuses/update', { in_reply_to_status_id: tweet.id_str, status: '@' + tweet.user.screen_name + ' ' + responses[randomIndex]})
-        console.log('Replied to ' + tweet.user.screen_name +  ' with - ' + responses[responses[randomIndex]])
+        console.log('Replied to ' + tweet.user.screen_name +  ' with - ' + responses[randomIndex])
     })
 
 }
