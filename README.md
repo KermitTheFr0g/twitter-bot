@@ -4,7 +4,7 @@
 This project is a simple twitter bot that takes twitter userIDs and watches them for when they tweet. It can then be programmed to reply with a specific message to these users. Perfect for trolling your friends on twitter or just for fun.
 
 ## Getting started 
-It is very simple to get started, however the first thing you're going to need is to have a twitter account. You can create one [here](https://twitter.com/). You are also going to need to apply for a twitter developer account this can be done here [here](https://developer.twitter.com/en/portal/dashboard).
+It is very simple to get started, however the first thing you're going to need is to have a twitter account. You can create one [here](https://twitter.com/). You are also going to need to apply for a twitter developer account this can be done [here](https://developer.twitter.com/en/portal/dashboard).
 
 ### Installation
 Here I am going to show you how to setup the twitter bot and where all of your twitter API keys need to be stored.
