@@ -62,5 +62,12 @@ Along with having the userIDs for the accounts you want to watch but inside of `
     ]
 }
 ```
+Once we have the userIDs and responses we can start the bot.
+```sh
+$ npm run start
+```
+Now we have the bot up and running, anytime a user tweets that matches one of the userIDs in the `config.json` file the bot will reply with one of the responses.
 
+## Further Development
+Feel free to fork the project and make any changes you want. You can make the bot more complex by adding different replies for different types of tweets.
 
