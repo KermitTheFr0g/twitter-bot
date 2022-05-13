@@ -46,7 +46,7 @@ There are two ways you can get the userID firstly through an external site like 
 ```sh
 $ npm run getUserID <username>
 ```
-This will return the userID for the user you searched for, you can then add this userID to the `config.json` file. However, to use this script you will need to have the nodejs package `twit.js` installed and setup the twit client. So continue on to the next section if you don't know how to do this.
+This will return the userID for the user you searched for, you can then add this userID to the `config.json` file. However, to use this script you will need to have the nodejs package `twit.js` installed and setup the twit client. So if you don't have these installed go back to the 
 
 Along with having the userIDs for the accounts you want to watch but inside of `config.json` you will also need to include the responses that the twitter bot is going to make. This could be a single response or be multiple that you want to randomly choose from. The `config.json` file should look like this
 ```json
